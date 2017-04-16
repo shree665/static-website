@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js' type='text/javascript'></script>
+<script language='javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+  SyntaxHighlighter.all();
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coffeetechgaff.com">
+    <meta name="author" content="coffeetechgaff.com">
+
+    <title>coffeetechgaff - Blogs</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">coffeetechgaff.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../../../about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="../../../posts.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../../../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../../../img/elasticsearch-logo.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Mapping in Elasticsearch</h1>
+                        <span class="meta">Posted by <a href="../../../about.html">coffeetechgaff</a> on April 10, 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>Mapping is the process of defining how a document and fields it contains are stored and indexed. Mapping is very useful to define for following cases:</p>
+                    <ol>
+                      <li>Which string fields should be treated as full text fields?</li>
+                      <li>Which fields contain numbers, dates or geolocations?</li>
+                      <li>Whether the values of all fields in the document should be indexed into the catch-all _all field?</li>
+                      <li>Format of date values?</li>
+                      <li>Custom rules to control the mapping for dynamically added fields?</li>
+                    </ol>
+                    <p>Mapping can be done in two ways in <code>Elasticsearch</code>.</p>
+                    <h3>Dynamic Mappings</h3>
+                    <p>This is the default mapping provided by the Elasticsearch. Fields and mapping types do not need to be defined before being used. New mapping types and new field names will be added automatically, just by indexing document.</p>
+                    <h3>Explicit Mappings</h3>
+                    <p>Dynamic mapping can be useful to get started. But at some point, we will want to specify our own explicit mappings since we know our data more than <code>Elasticsearch</code>. We can create mapping types and field mappings when we create an index. We can also add mapping types and fields to existing index with <code>PUT</code> mapping API of <code>Elasticsearch</code>.</p>
+                    <p>We can create mapping for an index in two ways.</p>
+                    <ol>
+                      <li>Programmatically using java</li>
+                      <li>Using CLI</li>
+                    </ol>
+                    <h2>Programmatically using java</h2>
+                    <p>Mapping can be created at the time of index creation. It is recommended to create mapping before adding any data to index. Since, we know most of the fields before hand, it is very easy to do programmatically. If the mappings are present in the index, Exception will be thrown. We need to do safety check to eliminate this issue. The code looks like following:</p>
+
+                    <pre class="brush: java">
+                      import java.io.IOException;
+
+                      import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
+                      import org.elasticsearch.client.Client;
+                      import org.elasticsearch.common.xcontent.XContentBuilder;
+                      import org.elasticsearch.common.xcontent.XContentFactory;
+
+                      public class IndexAndCreateMapping {
+
+                          public void prepareIndex(Client client, String indexName, String documentType) throws IOException {
+                              //looking for index if that exists already
+                              IndicesExistsResponse indexResponse = client.admin().indices().prepareExists(indexName).get();
+
+                              //need to have some logic to create mapping only when the index is not created yet
+                              if (!indexResponse.isExists()) {
+                                  XContentBuilder builder = getMappingBuilder();
+                                  //creating mapping
+                                  client.admin().indices().prepareCreate(indexName).addMapping(documentType, builder).get();
+
+                                  //refeshes the index so that it can be accessed instantly
+                                  client.admin().indices().prepareRefresh().get();
+                              }
+                          }
+
+                          private XContentBuilder getMappingBuilder() throws IOException {
+                              return XContentFactory.jsonBuilder().prettyPrint().startObject()
+                                      .startObject("movie")
+                                      .startObject("properties")
+                                      .startObject("Directory").field("type", "string").field("index", "not_analyzed").endObject()
+                                      .startObject("Title").field("type", "string").endObject()
+                                      .startObject("Generes").field("type", "string").endObject()
+                                      .startObject("Year").field("type", "integer").endObject()
+                                      .endObject()
+                                      .endObject()
+                                      .endObject();
+                          }
+                      }
+                    </pre>
+                    <p>We can add new mapping types and fields to the existing index with PUT mapping API.</p>
+                    <h2>Using CLI</h2>
+                    <p>We can run PUT mapping API from command line. Following CURL command does the following.</p>
+                    <ol>
+                      <li>Creates an index called movies.</li>
+                      <li>Adds mapping types called movies.</li>
+                      <li>Specifies fields or properties in each mapping type.</li>
+                      <li>Specifies the data type and mapping for each field.</li>
+                    </ol>
+                    <pre class="brush: vb">
+                      curl -XPUT 'localhost:9200/movies?pretty' -d'
+                      {
+                        "movie" : {
+                          "properties" : {
+                            "Director" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                            },
+                            "Title" : {
+                              "type" : "string"
+                            },
+                            "Generes" : {
+                              "type" : "string"
+                            },
+                            "Year" : {
+                              "type" : "integer"
+                            }
+                          }
+                        }
+                      }'
+                    </pre>
+                  <h2>Updating Existing Mappings</h2>
+                  <p>Existing type and field mappings cannot be updated unless otherwise documented. Changing the mapping would mean invalidating already indexed documents. Instead, we should create a new index with correct mappings and re-index the data. However, there are some exceptions to this rule. For instance:</p>
+                  <ol>
+                    <li>New properties can be added to object datatype fields.</li>
+                    <li>New multi-fields can be added to existing fields.</li>
+                    <li>The <code>ignore_above</code> parameter can be updated.</li>
+                  </ol>
+                    <p>We can add mapping to the existing index using CLI as follows. In this example, we are adding Hero of each movie:</p>
+                    <pre class="brush: vb">
+                      curl -XPUT 'localhost:9200/movies/movies/_mapping?pretty' -d'
+                      {
+                          "properties" : {
+                            "Hero" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                              }
+                          }
+                      }'
+                    </pre>
+
+                    <p>When we add index : not_analyzed,  it will not analyzed the string while indexing the data. This means that when we search, it will match for whole word rather than keywords.</p>
+
+                    <p>We can also update the existing mappings by updating new field as follows:</p>
+                    <pre class="brush: vb">
+                      curl -XPUT 'localhost:9200/movies/movies/_mapping?pretty' -d'
+                      {
+                          "properties" : {
+                            "Hero" : {
+                              "type" : "string",
+                              "index" : "not_analyzed",
+                              "ignore_above" : 100
+                              }
+                          }
+                      }'
+                    </pre>
+                    <p><code>ignore_above</code> will ignore any hero value that are longer than 100 characters.</code>
+                    <p>ommand line. Since, it is one time process to create mapping, it is better to add mapping from CLI before adding data to the Elasticsearch. However, we can add programmatically as well which need constant check of index.</p>
+                </div>
+                <hr>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div id="disqus_thread"></div>
+                  <script>
+
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  var disqus_config = function () {
+                  this.page.url = 'http://coffeetechgaff.com/src/components/blogs/mapping-in-elasticsearch.html';
+                  this.page.identifier = '/blogs/mapping-in-elasticsearch.html';
+                  };
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://coffeetechgaff-com.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; coffeetechgaff.com 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../../../js/jqBootstrapValidation.js"></script>
+    <script src="../../../js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="../../../js/clean-blog.min.js"></script>
+
+    <!-- Discus comment count -->
+    <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
+
+</body>
+
+</html>
