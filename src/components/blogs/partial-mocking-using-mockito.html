@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js' type='text/javascript'></script>
+<script language='javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+  SyntaxHighlighter.all();
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coffeetechgaff.com">
+    <meta name="author" content="coffeetechgaff.com">
+
+    <title>coffeetechgaff - Blogs</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">coffeetechgaff.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../../../about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="../../../posts.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../../../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../../../img/mockito.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Partial Mocking Using Mockito</h1>
+                        <span class="meta">Posted by <a href="../../../about.html">coffeetechgaff</a> on April 16, 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>We can test a method by mocking another method of a class that is being tested. However, the method that we are going to mock should be public. We have to do this type of testing frequently in our TDD environement. In this blog, I will show how we can test our a method by mocking another method of a same class using Mockito.</p>
+                    <h3>Purpose</h3>
+                    <p>Unit testing a method by mocking another method of a same class. </p>
+                    <h3>Scenerio</h3>
+                    <p>I am writing unit tests for my Storm Topology. One of our requirement is to retrieve all storm configurations from <a href="https://redis.io">Redis</a>. Since, I have to instantiate my Redis connection inside the main method, I have to use <a href="http://powermock.github.io">PowerMockito</a> to create new mocked object inside the method.</p>
+                    <p>Whenever I use PowerMockito to instantiate object, <a href="https://www.sonarqube.org">SonarQube</a> won't generate coverage on that test. I ended up splitting into mulitple methods to bring up the SonarQube coverage by moving object instanciation to another method.</p>
+                    <h3>Dependency</h3>
+                    <pre class="brush: xml">
+                      <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+                      <dependency>
+                          <groupId>org.mockito</groupId>
+                          <artifactId>mockito-all</artifactId>
+                          <version>1.10.19</version>
+                      </dependency>
+                    </pre>
+                    </br>
+                    <h3>Implementation</h3>
+                    <p>Class that needs to be tests which holds the multiple methods. I wanted to test <code>loadTopologyProperties</code> method without depending on Redis instanciation. So, I wanted to mock <code>getRedis</code> method. <code>getRedis</code> method will instantiate <code>dao</code> class to retrieve the topology properties.</p>
+                    <pre class="brush: java">
+                      package directory.topology;
+
+                      import java.util.Arrays;
+                      import java.util.HashMap;
+                      import java.util.Map;
+
+                      import org.apache.commons.lang3.ArrayUtils;
+                      import org.apache.storm.Config;
+                      import org.apache.storm.StormSubmitter;
+                      import org.apache.storm.generated.AlreadyAliveException;
+                      import org.apache.storm.generated.AuthorizationException;
+                      import org.apache.storm.generated.InvalidTopologyException;
+                      import org.apache.storm.kafka.KafkaSpout;
+                      import org.apache.storm.topology.BoltDeclarer;
+                      import org.apache.storm.topology.InputDeclarer;
+                      import org.apache.storm.topology.TopologyBuilder;
+                      import org.slf4j.Logger;
+                      import org.slf4j.LoggerFactory;
+
+                      /**
+                       * Topology that connects all spouts and bolts and executes in a sequential
+                       * manner.
+                       *
+                       * @author VivekSubedi
+                       *
+                       */
+                      public class DirectoryTopology{
+
+                      	private static final Logger logger = LoggerFactory.getLogger(DirectoryTopology.class);
+
+                      	/**
+                      	* omitted all the value intanciation for testing purpose
+                      	*/
+
+                      	/**
+                      	 * This method creates a topology and submits to the cluster either to local
+                      	 * or remote depending on the provided parameters
+                      	 *
+                      	 * @param args
+                      	 *            - Command Line arguments
+                      	 * @throws AuthorizationException
+                      	 * @throws InvalidTopologyException
+                      	 * @throws AlreadyAliveException
+                      	 * @throws Exception
+                      	 * @AlreadAliveException @InvalidTopologyException @AuthorizationException
+                      	 */
+                      	protected void submitTopology(String[] args) throws AlreadyAliveException, InvalidTopologyException,
+                      			AuthorizationException{
+
+                      		if(ArrayUtils.isEmpty(args)){
+                      			logger.error("Command line argument can not be null or empty");
+                      			throw new IllegalArgumentException("Command line argument cannot be null or empty");
+                      		}
+
+                      		if(args.length != 4){
+                      			logger.info("Argumements provided by user are:");
+                      			Arrays.asList(args).forEach(logger::info);
+                      			logger.error("Number of argument should be exactly four arguments in following order \n1. Topology Name \n2. RedisIP \n3. RedisPort \n4. RedisKey");
+                      			throw new IllegalArgumentException(
+                      					"\nNumber of argument should be exactly four arguments in following order \n1. Topology Name \n2. RedisIP \n3. RedisPort \n4. RedisKey");
+                      		}
+                      		Arrays.asList(args).forEach(logger::info);
+                      		logger.info("Reading Topology properties from redis");
+                      		Config config = loadTopologyProperties(args);
+                      		logger.info("Configuration has been loaded from readis {}", config);
+
+                      		/**
+                      		* omitted the topology builder for testing purpose
+                      		*/
+
+                      		/**
+                      		 * submitting storm topology to cluster
+                      		 */
+                      		String topologName = args[0];
+                      		config.setNumWorkers(numbWorkers);
+                      		logger.info("Submitting topology [{}]", topologName);
+                      		StormSubmitter.submitTopology(topologName, config, topologyBuilder.createTopology());
+                      		logger.info("Topology has been submitted to remote cluster successfully!");
+
+                      	}
+
+                      	/**
+                      	 * Reading all configurations of directory topology from Redis and loaded to
+                      	 * to @Config storm object
+                      	 *
+                      	 * @param args
+                      	 *            -Arguments provided by user from command line
+                      	 * @return @Config object
+                      	 */
+                      	public Config loadTopologyProperties(String[] args){
+                      		// parsing the command line arguments
+                      		String redisIp = args[1];
+                      		int redisPort = Integer.parseInt(args[2]);
+                      		String redisKey = args[3];
+
+                      		// creating @Config object and loading that object from redis
+                      		Config config = new Config();
+                      		Redis redis = getRedis(redisIp, redisPort);
+
+                      		// loading each topology value to the config
+                      		DirectoryUtils.getTopologyList().forEach(i -> {
+                      			if(redis.exists(redisKey, i)){
+                      				config.put(i, redis.getProperty(redisKey, i));
+                      			}
+                      		});
+
+                      		// loading default config values for storm
+                      		config.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 2048);
+                      		config.put(Config.TOPOLOGY_BACKPRESSURE_ENABLE, false);
+                      		config.put(Config.TOPOLOGY_EXECUTOR_RECEIVE_BUFFER_SIZE, 16384);
+                      		config.put(Config.TOPOLOGY_EXECUTOR_SEND_BUFFER_SIZE, 16384);
+
+                      		return config;
+                      	}
+
+                      	public Redis getRedis(String redisIp, int redisPort){
+                      		RedisClient redisClient = new RedisClient(redisIp, redisPort);
+                      		return new Redis(redisClient);
+                      	}
+
+                      	/**
+                      	 * Creating spout configuration for @Kafka @Zookeeper
+                      	 *
+                      	 * @param config
+                      	 *            -user provided configuration that is created with redis values
+                      	 * @return @Map of @Zookeeper and zkRoot
+                      	 */
+                      	public Map<String, Object> buildPropertyMap(Config config){
+                      		Map<String, Object> configProperties = new HashMap<>();
+                      		configProperties.put(DirectoryUtils.KAFKAZOOKEEPER, config.get(DirectoryUtils.KAFKAZOOKEEPER));
+                      		configProperties.put(DirectoryUtils.KAFKAZKROOT, config.get(DirectoryUtils.KAFKAZKROOT));
+                      		return configProperties;
+                      	}
+
+                      	/**
+                      	 * Main method to kick off the topology
+                      	 *
+                      	 * @param args
+                      	 *            - command line arguments
+                      	 * @throws Exception
+                      	 * @AlreadAliveException @InvalidTopologyException @AuthorizationException
+                      	 */
+                      	public static void main(String[] args) throws Exception{
+                      		DirectoryTopology topology = new DirectoryTopology();
+                      		topology.submitTopology(args);
+                      	}
+                      }
+                    </pre>
+                    <p>Testing above class’s <code>loadTopologyProperties</code> method by mocking <code>getRedis</code> method:</p>
+                    <pre class="brush: java">
+                      package directory.topology;
+
+                      import static org.junit.Assert.assertEquals;
+                      import static org.junit.Assert.assertNotNull;
+                      import static org.mockito.Mockito.spy;
+                      import static org.mockito.Mockito.when;
+
+                      import org.apache.storm.Config;
+                      import org.junit.AfterClass;
+                      import org.junit.Before;
+                      import org.junit.BeforeClass;
+                      import org.junit.Test;
+                      import org.junit.runner.RunWith;
+                      import org.mockito.Answers;
+                      import org.mockito.InjectMocks;
+                      import org.mockito.Mock;
+                      import org.mockito.MockitoAnnotations;
+                      import org.mockito.Spy;
+                      import org.slf4j.Logger;
+                      import org.slf4j.LoggerFactory;
+
+                      /**
+                       *
+                       * @author VivekSubedi
+                       *
+                       */
+                      public class DirectoryTopologyTest{
+
+                      	private static final Logger logger = LoggerFactory.getLogger(DirectoryTopologyTest.class);
+
+
+                      	@BeforeClass
+                      	public static void setUpBeforeClass() throws Exception{
+                      		logger.info("============ START UNIT TEST ==============");
+                      	}
+
+                      	@AfterClass
+                      	public static void tearDownAfterClass() throws Exception{
+                      		logger.info("============ END UNIT TEST ==============");
+                      	}
+
+                      	@Before
+                      	public void setUp() throws Exception{
+                      		MockitoAnnotations.initMocks(this);
+                      	}
+
+                      	@Test
+                      	public void testLoadTopologyProperties(){
+                      		logger.info("Running testLoadTopologyProperties...");
+
+                      		// loading data
+                      		String[] args = new String[]{"topology", "192.168.99.100", "9999", "directory"};
+                      		String redisIp = args[1];
+                      		int redisPort = Integer.parseInt(args[2]);
+                      		String redisKey = args[3];
+                      		String datasourceTopic = "datasource.topic";
+                      		String analyticTopic = "analytic.topic";
+
+                      		// mocking
+                      		DirectoryTopology spyTopology = spy(DirectoryTopology.class);
+                      		Redis redis = mock(Redis.class);
+                      		doReturn(redis).when(spyTopology).getRedis(redisIp, redisPort);
+                      		when(redis.exists(redisKey, datasourceTopic)).thenReturn(true);
+                      		when(redis.exists(redisKey, analyticTopic)).thenReturn(true);
+                      		when(redis.getProperty(redisKey, datasourceTopic)).thenReturn("datasources");
+                      		when(redis.getProperty(redisKey, analyticTopic)).thenReturn("avroNode");
+
+                      		// calling real method
+                      		Config config = spyTopology.loadTopologyProperties(args);
+
+                      		// veryfing the call
+                      		logger.info(config.toString());
+                      		assertNotNull(config);
+                      		assertEquals(6, config.entrySet().size());
+                      		assertEquals("datasources", config.get(datasourceTopic));
+                      		assertEquals("avroNode", config.get(analyticTopic));
+                      	}
+                      }
+                      </pre>
+                    <p>We need to <code>@Spy</code> the class that we are testing i.e. DirectoryTopology. Everything else is self explanitory and very easy to understand.</p>
+                </div>
+                <hr>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div id="disqus_thread"></div>
+                  <script>
+
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  var disqus_config = function () {
+                  this.page.url = 'http://coffeetechgaff.com/src/components/blogs/partial-mocking-using-mockito.html';
+                  this.page.identifier = '/blogs/partial-mocking-using-mockito.html';
+                  };
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://coffeetechgaff-com.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; coffeetechgaff.com 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../../../js/jqBootstrapValidation.js"></script>
+    <script src="../../../js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="../../../js/clean-blog.min.js"></script>
+
+    <!-- Discus comment count -->
+    <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
+</body>
+
+</html>
