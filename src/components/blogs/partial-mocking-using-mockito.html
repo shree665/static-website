@@ -104,12 +104,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>We can test a method by mocking another method of a class that is being tested. However, the method that we are going to mock should be public. We have to do this type of testing frequently in our TDD environement. In this blog, I will show how we can test our a method by mocking another method of a same class using Mockito.</p>
+                    <p>We can test a method by mocking another method of a class that is being tested. However, the method that we are going to mock should be public. We have to do this type of testing frequently in our TDD environement. In this blog, I will show, how we can test our method by mocking another method in a same class using Mockito.</p>
                     <h3>Purpose</h3>
-                    <p>Unit testing a method by mocking another method of a same class. </p>
+                    <p>Unit testing a method by mocking another method in a same class. </p>
                     <h3>Scenerio</h3>
                     <p>I am writing unit tests for my Storm Topology. One of our requirement is to retrieve all storm configurations from <a href="https://redis.io">Redis</a>. Since, I have to instantiate my Redis connection inside the main method, I have to use <a href="http://powermock.github.io">PowerMockito</a> to create new mocked object inside the method.</p>
-                    <p>Whenever I use PowerMockito to instantiate object, <a href="https://www.sonarqube.org">SonarQube</a> won't generate coverage on that test. I ended up splitting into mulitple methods to bring up the SonarQube coverage by moving object instanciation to another method.</p>
+                    <p>Whenever I use PowerMockito to instantiate object, <a href="https://www.sonarqube.org">SonarQube</a> won't generate coverage on that test (It is a bug in SonarQube). I ended up splitting into mulitple methods to bring up the SonarQube coverage by moving object instanciation to another method.</p>
                     <h3>Dependency</h3>
                     <pre class="brush: xml">
                       <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
@@ -251,7 +251,7 @@
                       	 * @return @Map of @Zookeeper and zkRoot
                       	 */
                       	public Map<String, Object> buildPropertyMap(Config config){
-                      		Map<String, Object> configProperties = new HashMap<>();
+                      		Map<String, Object> configProperties = new HashMap<String, Object>();
                       		configProperties.put(DirectoryUtils.KAFKAZOOKEEPER, config.get(DirectoryUtils.KAFKAZOOKEEPER));
                       		configProperties.put(DirectoryUtils.KAFKAZKROOT, config.get(DirectoryUtils.KAFKAZKROOT));
                       		return configProperties;
@@ -271,7 +271,7 @@
                       	}
                       }
                     </pre>
-                    <p>Testing above class’s <code>loadTopologyProperties</code> method by mocking <code>getRedis</code> method:</p>
+                    <p>Testing above class’s <code>loadTopologyProperties</code> method by mocking <code>getRedis</code> method as follows:</p>
                     <pre class="brush: java">
                       package directory.topology;
 
@@ -334,6 +334,7 @@
                       		// mocking
                       		DirectoryTopology spyTopology = spy(DirectoryTopology.class);
                       		Redis redis = mock(Redis.class);
+                          //whenever we mock another method of a same class, we need to use doReturn()
                       		doReturn(redis).when(spyTopology).getRedis(redisIp, redisPort);
                       		when(redis.exists(redisKey, datasourceTopic)).thenReturn(true);
                       		when(redis.exists(redisKey, analyticTopic)).thenReturn(true);
@@ -352,7 +353,7 @@
                       	}
                       }
                       </pre>
-                    <p>We need to <code>@Spy</code> the class that we are testing i.e. DirectoryTopology. Line 63 to 66, we are mocking the expected output of another method of mocked class. Everything else is self explanitory and very easy to understand.</p>
+                    <p>We need to annotate <code>@Spy</code> the class that we are testing i.e. DirectoryTopology. Line 63 to 66, we are mocking the expected output of another method of mocked class. Everything else is self explanatory and very easy to understand.</p>
                 </div>
                 <hr>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
