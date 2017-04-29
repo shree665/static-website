@@ -244,20 +244,6 @@
                       	}
 
                       	/**
-                      	 * Creating spout configuration for @Kafka @Zookeeper
-                      	 *
-                      	 * @param config
-                      	 *            -user provided configuration that is created with redis values
-                      	 * @return @Map of @Zookeeper and zkRoot
-                      	 */
-                      	public Map<String, Object> buildPropertyMap(Config config){
-                      		Map<String, Object> configProperties = new HashMap<String, Object>();
-                      		configProperties.put(DirectoryUtils.KAFKAZOOKEEPER, config.get(DirectoryUtils.KAFKAZOOKEEPER));
-                      		configProperties.put(DirectoryUtils.KAFKAZKROOT, config.get(DirectoryUtils.KAFKAZKROOT));
-                      		return configProperties;
-                      	}
-
-                      	/**
                       	 * Main method to kick off the topology
                       	 *
                       	 * @param args
