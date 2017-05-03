@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js' type='text/javascript'></script>
+<script language='javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+  SyntaxHighlighter.all();
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coffeetechgaff.com">
+    <meta name="author" content="coffeetechgaff.com">
+
+    <title>coffeetechgaff - Blogs</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">coffeetechgaff.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../../../about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="../../../posts.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../../../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../../../img/gremlin-dashboard.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Creating a JanuGraph using Gremlin Console</h1>
+                        <span class="meta">Posted by <a href="../../../about.html">coffeetechgaff</a> on April 22, 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>JanusGraph is new community project under the Linux foundation. It is forked from TitanDB code. JanusGraph incorporates support for the property graph model with <a href="https://tinkerpop.apache.org" target="_blank">Apache TinkerPop</a> (the open source graph computing framework) and its Gremlin graph traversal language. According to JanusGraph website:</p>
+                    <blockquote>JanusGraph is a scalable <a href="https://en.wikipedia.org/wiki/Graph_database">graph database</a> optimized for storing and querying graphs containing hundreds of billions of vertices and edges distributed across a multi-machine cluster. JanusGraph is a transactional database that can support thousands of concurrent users executing complex graph traversals in real time.</blockquote>
+                    <p>I will show how you can run JanusGraph locally so that you can try out yourself since it might become the de-facto implementation of TinkerPop. I will be using Cassandra and Elasticsearch for backend databases.</p>
+                    <h2>Procedure</h2>
+                    <ol>
+                      <li>Start Gremlin console as per <a href="http://coffeetechgaff.com/src/components/blogs/gremlin-console-with-janusgraph-inlinux.html" target="_blank">Starting with Gremlin Console</a></li>
+                      <li>Define your connection properties in properties file to connect to Cassandra and Elasticsearch docker images as follows. (hostname of Cassandra and Elasticsearch might change on your machine).
+                      <pre>
+storage.backend=cassandrathrift
+storage.hostname=localhost
+cache.db-cache=true
+cache.db-cache-clean-wait=20
+cache.db-cache-time=180000
+cache.db-cache-size=0.25
+index.search.backend=elasticsearch
+index.search.hostname=localhost
+index.search.elasticsearch.client-only=true
+                      </pre>
+                      </li>
+                      <li>Run <code>docker pull cassandra:2.1.9</code> command to pull cassandra from Docker Hub. It is using old version of cassandra.</li>
+                      <li>Run <code>docker pull elasticsearch:2.4.4</code> command to pull elasticsearch from Docker Hub.</li>
+                      <li>After successful pull, run following command to run cassandra docker image.
+                      <code>docker run -e CASSANDRA_START_RPC=true --name cassandra-latest -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160 -t -d cassandra:2.1.9</code>
+                      </li>
+                      <li>Look for the following message</li>
+                      <img src="../../../img/gremlinstart.png" alt="Gemlin Start Pic">
+                      <li>Run <code>docker run –name elasticsearch-2.4.4 -p 9300:9300 -p 9200:9200 -t -d elasticsearch:2.4.4</code> command run run elasticsearch docker image</li>
+                      <li>Check both images are running by running docker ps command and see both images are running or not.</li>
+                      <li>Run following command to connect to your backend using Gremlin console.
+<pre>gremlin> graph = JanusGraphFactory.open('.../website/janusgraph.properties')
+==> standardjanusgraph[cassandrathrift:[localhost]]</pre>
+                        <p>Once a graph exists, a graph traversal g is configured that will allow graph traversal. Graph traversal is used to query the graph data and returns results. A graph traversal is bound to specific traversal source that is the standard Janus traversal engine.</p>
+                      </li>
+                      <li>Create traversal instance so that we can query our graph database. We can also use traversal instance to create vertices.
+<pre>gremlin> g = graph.traversal()
+==>graphtraversalsource[standardjanusgraph[cassandrathrift:[localhost]], standard]</pre>
+                        <p>The graph commands usually add vertices and edges to database or get other graph information. the g commands generally do queries to obtain results.</p>
+                      </li>
+                      <li>Load some vertices and start playing with JanusGraph.</li>
+                    </ol>
+                    <br/>
+                    <p class="copyright text-muted">Copyright of gremlin image is &copy; <a href="http://tinkerpop.apache.org">apache.org</a></p>
+                </div>
+                <hr>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div id="disqus_thread"></div>
+                  <script>
+
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  var disqus_config = function () {
+                  this.page.url = 'http://coffeetechgaff.com/src/components/blogs/creating-janusgraph-using-gremlin.html';
+                  this.page.identifier = '/blogs/creating-janusgraph-using-gremlin.html';
+                  };
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://coffeetechgaff-com.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; coffeetechgaff.com 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../../../js/jqBootstrapValidation.js"></script>
+    <script src="../../../js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="../../../js/clean-blog.min.js"></script>
+
+    <!-- Discus comment count -->
+    <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
+</body>
+
+</html>
