@@ -128,10 +128,12 @@ index.search.elasticsearch.client-only=true
                       <li>After successful pull, run following command to run cassandra docker image.
                       <code>docker run -e CASSANDRA_START_RPC=true --name cassandra-latest -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160 -t -d cassandra:2.1.9</code>
                       </li>
-                      <li>Look for the following message</li>
-                      <img src="../../../img/gremlinstart.png" alt="Gemlin Start Pic">
+                      <li>Look for the following message. If you get following message, then your cassandra has started successfully</li>
+                      <img src="../../../img/cassandra.png" alt="Cassandara Console Output">
                       <li>Run <code>docker run –name elasticsearch-2.4.4 -p 9300:9300 -p 9200:9200 -t -d elasticsearch:2.4.4</code> command run run elasticsearch docker image</li>
-                      <li>Check both images are running by running docker ps command and see both images are running or not.</li>
+                      <img src="../../../img/elasticsearch.png" alt="Elasticsearch Console Output">
+                      <li>Check both images are running by running <code>docker ps</code> command and see both images are running or not. You should see Cassandra and Elasticsearch images running as follows</li>
+                      <img src="../../../img/docker-ps.png" alt="Docker ps">
                       <li>Run following command to connect to your backend using Gremlin console.
 <pre>gremlin> graph = JanusGraphFactory.open('.../website/janusgraph.properties')
 ==> standardjanusgraph[cassandrathrift:[localhost]]</pre>
