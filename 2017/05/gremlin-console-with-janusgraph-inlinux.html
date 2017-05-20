@@ -30,13 +30,13 @@
     <title>coffeetechgaff - Blogs</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="../../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -59,23 +59,23 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="../../../index.html">coffeetechgaff.com</a>
+                <a class="navbar-brand" href="../../index.html">coffeetechgaff.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="../../../index.html">Home</a>
+                        <a href="../../index.html">Home</a>
                     </li>
                     <li>
-                        <a href="../../../about.html">About</a>
+                        <a href="../../about.html">About</a>
                     </li>
                     <li>
-                        <a href="../../../posts.html">Blog</a>
+                        <a href="../../posts.html">Blog</a>
                     </li>
                     <li>
-                        <a href="../../../contact.html">Contact</a>
+                        <a href="../../contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -86,13 +86,13 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('../../../img/docker.jpg')">
+    <header class="intro-header" style="background-image: url('../../img/gremlin-dashboard.png'); background-color: black">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Deleting Containers and Images from Docker</h1>
-                        <span class="meta">Posted by <a href="../../../about.html">coffeetechgaff</a> on April 10, 2017</span>
+                        <h1>Starting Gremlin Console With JanusGraph in Linux</h1>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on April 22, 2017</span>
                     </div>
                 </div>
             </div>
@@ -104,30 +104,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>If you want to delete specific image or container from docker registry, it is very easy to delete just by writing following command.</p>
-                    <p>for container: </p>
-                    <pre class="brush: vb">
-                      docker rm [container name]
-                    </pre>
-                    <p>for image:</p>
-                    <pre class="brush: vb">
-                      docker rmi [image id/name]
-                    </pre>
-                    <p>What about if you want to delete all the images and containers from your docker? It is very easy to remove all container and images at once as well. Please execute following command to remove all containers from docker</p>
-                    <pre class="brush: vb">
-                      docker rm $(docker ps -a -q)
-                    </pre>
-                    <p>This command won’t delete running containers. You need to stop all the running containers if you want to delete running container as well.</p>
-
-                    <p>On the other hand, if you want to delete all the images from docker registry, you can run following command.</p>
-                    <pre class="brush: vb">
-                      docker rmi $(docker images -q)
-                    </pre>
-                    <p>Sometimes above command won’t delete all the images from docker. If it did not delete some images, you can run following command to force delete.</p>
-                    <pre class="brush: vb">
-                      docker rmi -f $(docker images -q)
-                    </pre>
-                    <p>reference: <a href="https://github.com/docker/docker/issues/928#issuecomment-23538307" target="_blank">https://github.com/docker/docker/issues/928#issuecomment-23538307</a></p>
+                    <p><a href="https://tinkerpop.apache.org/gremlin.html">Gremlin</a> is the graph traversal language that is used to interact with JanusGraph. Gremlin is being used by many graph databases these days. One method of putting Gremlin code in JanusGraph is to use Gremlin Console that is being provided by the JanusGraph which comes with JanusGraph plugin. The Gremlin console is a very useful interactive environment for directly writing Gremlin query to create graph schema, load data, administer graph, and retrieval traversal results.</p>
+                    <h2>Procedure</h2>
+                    <ol>
+                      <li>Clone <code>JanusGraph</code> from its GitHub repository <a href="https://github.com/JanusGraph/janusgraph/" target="_blank">JanusGraph GitHub Repo</a></li>
+                      <li>Run <code>mvn clean install -DskipTests=true</code> command on your console. You need to be inside Janusgraph folder to run this command. <code>-DskipTest=true</code> would skip all the test from the build. If you want to run all tests, you can run it but it would take around 5 hours. It will take around 25 minutes to build even with <code>-DskipTest=true</code>.</li>
+                      <li>Once step two completed successfully, navigate to bin folder. <code>bin</code> folder only gets created when the step 2 gets completed successfully.</li>
+                      <li>Run the <code>./gremlin.sh</code> command on your console. If your are not inside the bin folder. You can run <code>bin/gremlin.sh</code> command from your console.</li>
+                      <li>The console output looks like follows</li>
+                      <img src="../../img/gremlinstart.png" alt="Gemlin Start Pic">
+                    </ol>
+                    <p class="bg-info">Six plugins are activated by default, as shown. The Gremlin Server, tinker pop.server, is started so that commands can be issued to JanusGraph. The utilities plugin, tunkerpop.utilities provides various functions, helper methods and imports of external classes that are useful in Gremlin console.</p>
+                    <p>Discover all Gremlin console commands with help. Console commands are not Gremlin language commands, but rather commands issue to Gremlin console for shell functionality. The Gremlin console is based on Groovy Language.</p>
+                    <img src="../../img/gremlinhelp.png" alt="Gemlin Help Pic">
+                    <br/>
+                    <br/>
+                    <p class="copyright text-muted">Copyright of gremlin image is &copy; <a href="http://tinkerpop.apache.org">apache.org</a></p>
                 </div>
                 <hr>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -138,8 +130,8 @@
                   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
                   var disqus_config = function () {
-                  this.page.url = 'http://coffeetechgaff.com/src/components/blogs/deleting-containers-and-image-from-docker.html';
-                  this.page.identifier = '/blogs/deleting-containers-and-image-from-docker.html';
+                  this.page.url = 'http://coffeetechgaff.com/2017/05/gremlin-console-with-janusgraph-inlinux.html';
+                  this.page.identifier = '/2017/05/gremlin-console-with-janusgraph-inlinux.html';
                   };
                   (function() { // DON'T EDIT BELOW THIS LINE
                   var d = document, s = d.createElement('script');
@@ -185,17 +177,17 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="../../../js/jqBootstrapValidation.js"></script>
-    <script src="../../../js/contact_me.js"></script>
+    <script src="../../js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../../../js/clean-blog.min.js"></script>
+    <script src="../../js/clean-blog.min.js"></script>
 
     <!-- Discus comment count -->
     <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>

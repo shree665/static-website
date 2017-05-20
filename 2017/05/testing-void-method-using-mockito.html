@@ -30,13 +30,13 @@
     <title>coffeetechgaff - Blogs</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="../../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -59,23 +59,23 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="../../../index.html">coffeetechgaff.com</a>
+                <a class="navbar-brand" href="../../index.html">coffeetechgaff.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="../../../index.html">Home</a>
+                        <a href="../../index.html">Home</a>
                     </li>
                     <li>
-                        <a href="../../../about.html">About</a>
+                        <a href="../../about.html">About</a>
                     </li>
                     <li>
-                        <a href="../../../posts.html">Blog</a>
+                        <a href="../../posts.html">Blog</a>
                     </li>
                     <li>
-                        <a href="../../../contact.html">Contact</a>
+                        <a href="../../contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -86,13 +86,13 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('../../../img/java.jpg')">
+    <header class="intro-header" style="background-image: url('../../img/mockito.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Easy Way to Write toString() Method</h1>
-                        <span class="meta">Posted by <a href="../../../about.html">coffeetechgaff</a> on April 10, 2017</span>
+                        <h1>Testing Void Method Using Mockito</h1>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on April 10, 2017</span>
                     </div>
                 </div>
             </div>
@@ -104,39 +104,85 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>It starts to get boring to write <code>toString()</code> method especially if you want to include a lot of instance variables. If you are using eclipse, you can generate <code>toString()</code> method code by clicking <code>Source > Generate toString()…</code>. Method looks ugly to be honest.</p>
-                    <pre class="brush: java">
-                      @Override
-                      public String toString(){
-                         return"Message [id="+ id +", message="+ message +", created="
-                               + created +", author="+ author +", comments="+ comments
-                               +", links="+ links +"]";
-                      }
-                    </pre>
-                    </br>
-                    <p>Luckily, there is an open source library that takes care of it for you. Apache Commons Lang provides some methods that you might can use to write toString() method in cleaner way.</p>
-
-                    <p>This all you have to write toString() method using Apache Commons.</p>
-                    <pre class="brush: java">
-                      public String toString() {
-                         return ToStringBuilder.reflectionToString(this);
-                      }
-                    </pre>
-                    <p>Above method outputs all the variables with the memory location of a object that you are trying to print. We can remove memory location of a object by writing code like follows.</p>
-                    <pre class="brush: java">
-                      public String toString() {
-                         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-                      }
-                    </pre>
-                    <p>There are other styles too if you want to explore on it. The dependency for Apache Commons is as follows.</p>
+                    <p>Mockito is industry wide mocking framework for unit test. It gives an ability to a developer to write his/her code without depending on other developer’s code. Testing void method is hard because it doesn’t return any value. In this blog, I will show, how we can test our void method using Mockito.</p>
+                    <h3>Purpose</h3>
+                    <p>Unit testing void method of a class.</p>
+                    <h3>Dependency</h3>
                     <pre class="brush: xml">
-                      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+                      <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
                       <dependency>
-                          <groupId>org.apache.commons</groupId>
-                          <artifactId>commons-lang3</artifactId>
-                          <version>3.5</version>
+                          <groupId>org.mockito</groupId>
+                          <artifactId>mockito-all</artifactId>
+                          <version>1.10.19</version>
                       </dependency>
                     </pre>
+                    </br>
+                    <h3>Implementation</h3>
+                    <p>Class to hold void method:</p>
+                    <pre class="brush: java">
+                      package com.vsubedi.voidTest;
+
+                      import org.slf4j.Logger;
+                      import org.slf4j.LoggerFactory;
+
+                      public class SomeVoidMethod {
+                          private static final Logger logger = LoggerFactory.getLogger(SomeVoidMethod.class);
+
+                          public void printLogs(){
+                              logger.info("This method has been executed");
+                          }
+                      }
+                    </pre>
+                    <p>Testing above class’s void method:</p>
+                    <pre class="brush: java">
+                      package com.vsubedi.voidTest;
+
+                      import static org.mockito.Mockito.verify;
+
+                      import org.junit.AfterClass;
+                      import org.junit.Before;
+                      import org.junit.BeforeClass;
+                      import org.junit.Test;
+                      import org.mockito.InjectMocks;
+                      import org.mockito.MockitoAnnotations;
+                      import org.mockito.Spy;
+                      import org.slf4j.Logger;
+                      import org.slf4j.LoggerFactory;
+
+                      public class TestVoidMethod {
+                          private static final Logger logger = LoggerFactory.getLogger(TestVoidMethod.class);
+
+                          @InjectMocks
+                          @Spy
+                          private SomeVoidMethod someVoidMethod;
+
+                          @BeforeClass
+                          public static void setUpBeforeClass() throws Exception {
+                              logger.info("============ START UNIT TEST ==============");
+                          }
+
+                          @AfterClass
+                          public static void tearDownAfterClass() throws Exception {
+                              logger.info("============ END UNIT TEST ==============");
+                          }
+
+                          @Before
+                          public void setUp() throws Exception {
+                              MockitoAnnotations.initMocks(this);
+                          }
+
+                          @Test
+                          public void testPrintLogs() {
+                              someVoidMethod.printLogs();
+
+                              //verifying the interaction to the method
+                              verify(someVoidMethod).printLogs();
+                          }
+                      }
+                      </pre>
+                    <p>We need to have <code>@Spy</code> annotation to run <code>verify()</code> method which is supplied by Mockito. <code>verify</code> tells that <code>printLogs()</code> of SomeVoidMethod class has been executed at least once.</p>
+
+                    <p>This is just a very simple example to show how we can test void method. Void methods can be complex. We can also test those complex void methods using Mockito.</p>
                 </div>
                 <hr>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -147,8 +193,8 @@
                   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
                   var disqus_config = function () {
-                  this.page.url = 'http://coffeetechgaff.com/src/components/blogs/easyway-to-write-tostring-method.html';
-                  this.page.identifier = '/blogs/easyway-to-write-tostring-method.html';
+                  this.page.url = 'http://coffeetechgaff.com/2017/05/testing-void-method-using-mockito.html';
+                  this.page.identifier = '/2017/5/testing-void-method-using-mockito.html';
                   };
                   (function() { // DON'T EDIT BELOW THIS LINE
                   var d = document, s = d.createElement('script');
@@ -163,6 +209,7 @@
         </div>
     </article>
     <hr>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -193,21 +240,20 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="../../../js/jqBootstrapValidation.js"></script>
-    <script src="../../../js/contact_me.js"></script>
+    <script src="../../js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../../../js/clean-blog.min.js"></script>
+    <script src="../../js/clean-blog.min.js"></script>
 
     <!-- Discus comment count -->
     <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
-
 </body>
 
 </html>

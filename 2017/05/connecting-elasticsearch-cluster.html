@@ -30,13 +30,13 @@
     <title>coffeetechgaff - Blogs</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="../../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -59,23 +59,23 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="../../../index.html">coffeetechgaff.com</a>
+                <a class="navbar-brand" href="../../index.html">coffeetechgaff.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="../../../index.html">Home</a>
+                        <a href="../../index.html">Home</a>
                     </li>
                     <li>
-                        <a href="../../../about.html">About</a>
+                        <a href="../../about.html">About</a>
                     </li>
                     <li>
-                        <a href="../../../posts.html">Blog</a>
+                        <a href="../../posts.html">Blog</a>
                     </li>
                     <li>
-                        <a href="../../../contact.html">Contact</a>
+                        <a href="../../contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -86,13 +86,13 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('../../../img/mockito.jpg')">
+    <header class="intro-header" style="background-image: url('../../img/elasticsearch-logo.png')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Testing Void Method Using Mockito</h1>
-                        <span class="meta">Posted by <a href="../../../about.html">coffeetechgaff</a> on April 10, 2017</span>
+                        <h1>Connecting to Elasticsearch Cluster Using Java API</h1>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on April 10, 2017</span>
                     </div>
                 </div>
             </div>
@@ -104,85 +104,82 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>Mockito is industry wide mocking framework for unit test. It gives an ability to a developer to write his/her code without depending on other developer’s code. Testing void method is hard because it doesn’t return any value. In this blog, I will show, how we can test our void method using Mockito.</p>
-                    <h3>Purpose</h3>
-                    <p>Unit testing void method of a class.</p>
-                    <h3>Dependency</h3>
+                    <p>We can use Elasticsearch Client to connect to elasitcsearch. There are Transport Client and Node Client to connect to Elasticsearch cluster. Node is very lowever level client and knows the cluster very well. However, the TransportClient connects remotely to an Elasticsearch cluster using the transport module. It does not join the cluster, but simply gets one or more initial transport addresses and communicates with them in round robin fashion on each action. It is recommended to use Tranport client. After 5.0.0 version, we need to add following dependency for Transport client to make it work along with core jar.</p>
+
                     <pre class="brush: xml">
-                      <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+                      <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/transport -->
                       <dependency>
-                          <groupId>org.mockito</groupId>
-                          <artifactId>mockito-all</artifactId>
-                          <version>1.10.19</version>
+                           <groupId>org.elasticsearch.client</groupId>
+                           <artifactId>transport</artifactId>
+                           <version>5.2.0</version>
+                      </dependency>
+                      <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+                      <dependency>
+                           <groupId>org.elasticsearch</groupId>
+                           <artifactId>elasticsearch</artifactId>
+                           <version>5.2.0</version>
                       </dependency>
                     </pre>
                     </br>
-                    <h3>Implementation</h3>
-                    <p>Class to hold void method:</p>
+                    <p>We can initialize the Elasticsearch Client as following using JAVA API. It is not recomended to create new connection for every call.</p>
                     <pre class="brush: java">
-                      package com.vsubedi.voidTest;
+                      /**
+                      * Class to initialized the Elasticsearch client. It will re-use the same client
+                      *
+                      * @author vsubedi
+                      *
+                      */
+                      public class ElasticsearchClient{
 
-                      import org.slf4j.Logger;
-                      import org.slf4j.LoggerFactory;
+                      private static Client client;
 
-                      public class SomeVoidMethod {
-                          private static final Logger logger = LoggerFactory.getLogger(SomeVoidMethod.class);
+                      /**
+                      * Initialized the Elasticsearch Client if the client is not null. If the
+                      * client is not null, that client will be used
+                      *
+                      * @param clustername - clusername
+                      * @param ipAddress -ES ip address
+                      * @param port -ES port
+                      * @return @Client
+                      * @throws UnknownHostException
+                      */
+                      @SuppressWarnings("resource")
+                      public static Client getElasticsearchClient(String clustername, String ipAddress, int port) throws UnknownHostException{
 
-                          public void printLogs(){
-                              logger.info("This method has been executed");
-                          }
+                         if(client != null){
+                             return client;
+                         }
+
+                         Settings settings = Settings.builder().put("cluster.name", clustername).build();
+                         client = new PreBuiltTransportClient(settings)
+                      .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ipAddress), port));
+
+                         return client;
+                      }
+
+                      public static void closeClient(){
+                          if(client != null){
+                              client.close();
+                           }
+                        }
                       }
                     </pre>
-                    <p>Testing above class’s void method:</p>
+                    <p>Before 5.0.0 version (2.* versions), we could use TranportClient that was in core. We could connect to elasticsearch that were before 5.0.0 as follows:</p>
                     <pre class="brush: java">
-                      package com.vsubedi.voidTest;
+                      public static Client getElasticsearchClient(String clustername, String ipAddress, int port) throws UnknownHostException{
 
-                      import static org.mockito.Mockito.verify;
+                             if(client != null){
+                                  return client;
+                             }
 
-                      import org.junit.AfterClass;
-                      import org.junit.Before;
-                      import org.junit.BeforeClass;
-                      import org.junit.Test;
-                      import org.mockito.InjectMocks;
-                      import org.mockito.MockitoAnnotations;
-                      import org.mockito.Spy;
-                      import org.slf4j.Logger;
-                      import org.slf4j.LoggerFactory;
+                             Settings settings = Settings.builder().put("cluster.name", clustername).build();
+                             client = TransportClient.builder().settings(settings).build()
+                        .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ipAddress), port));
 
-                      public class TestVoidMethod {
-                          private static final Logger logger = LoggerFactory.getLogger(TestVoidMethod.class);
-
-                          @InjectMocks
-                          @Spy
-                          private SomeVoidMethod someVoidMethod;
-
-                          @BeforeClass
-                          public static void setUpBeforeClass() throws Exception {
-                              logger.info("============ START UNIT TEST ==============");
-                          }
-
-                          @AfterClass
-                          public static void tearDownAfterClass() throws Exception {
-                              logger.info("============ END UNIT TEST ==============");
-                          }
-
-                          @Before
-                          public void setUp() throws Exception {
-                              MockitoAnnotations.initMocks(this);
-                          }
-
-                          @Test
-                          public void testPrintLogs() {
-                              someVoidMethod.printLogs();
-
-                              //verifying the interaction to the method
-                              verify(someVoidMethod).printLogs();
-                          }
-                      }
+                            return client;
+                        }
                       </pre>
-                    <p>We need to have <code>@Spy</code> annotation to run <code>verify()</code> method which is supplied by Mockito. <code>verify</code> tells that <code>printLogs()</code> of SomeVoidMethod class has been executed at least once.</p>
-
-                    <p>This is just a very simple example to show how we can test void method. Void methods can be complex. We can also test those complex void methods using Mockito.</p>
+                    <p>For more:<a href" https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html" target="_blank"> https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html</a></p>
                 </div>
                 <hr>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -193,8 +190,8 @@
                   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
                   var disqus_config = function () {
-                  this.page.url = 'http://coffeetechgaff.com/src/components/blogs/testing-void-method-using-mockito.html';
-                  this.page.identifier = '/blogs/testing-void-method-using-mockito.html';
+                  this.page.url = 'http://coffeetechgaff.com/2017/05/connecting-elasticsearch-cluster.html';
+                  this.page.identifier = '/2017/05/connecting-elasticsearch-cluster.html';
                   };
                   (function() { // DON'T EDIT BELOW THIS LINE
                   var d = document, s = d.createElement('script');
@@ -205,11 +202,11 @@
                   </script>
                   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 </div>
+              </div>
             </div>
         </div>
     </article>
     <hr>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -240,17 +237,17 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="../../../js/jqBootstrapValidation.js"></script>
-    <script src="../../../js/contact_me.js"></script>
+    <script src="../../js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="../../../js/clean-blog.min.js"></script>
+    <script src="../../js/clean-blog.min.js"></script>
 
     <!-- Discus comment count -->
     <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
