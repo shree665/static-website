@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js' type='text/javascript'></script>
+<script language='javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+  SyntaxHighlighter.all();
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coffeetechgaff.com">
+    <meta name="author" content="coffeetechgaff.com">
+
+    <title>coffeetechgaff - Blogs</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="../../index.html">coffeetechgaff.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../../about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="../../posts.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../../img/GeoServer.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Building GeoServer Docker Image For ElasticSearch</h1>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on August 11, 2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <h3>Background</h3>
+                    <p>GeoServer is an open source software server written in Java that allows users to share and edit geospatial data. Designed for interoperability, it publishes data from any major spatial data source using open standards. GeoServer is the reference implementation of the <a href="http://www.opengeospatial.org/" target=_blank> Open Geospatial Consortium</a> (OGC)
+                      <a href="http://www.opengeospatial.org/standards/wfs"> Web Feature Service</a> (WFS) and <a href="http://www.opengeospatial.org/standards/wcs" target=_blank> Web Coverage Service</a> (WCS) standards, as well as a high performance certified compliant <a href="http://www.opengeospatial.org/standards/wms" target=_blank> Web Map Service</a> (WMS). GeoServer forms a core component of the Geospatial Web.</p>
+                    <p><a href="https://github.com/ngageoint/elasticgeo"> ElasticGeo</a> is plugin for GeoServer that provides a GeoTools data store that allows geospatial features from an Elasticsearch index to be published via OGC services using GeoServer. Both <code>geo_point</code> and <code>geo_shape</code> type mappings are supported. OGC filters are converted to Elasticsearch queries and can be combined with native Elasticsearch queries in WMS and WFS requests.</p>
+                    <h3>Purpose</h3>
+                    <p>Since, we are using docker architecture to build and deploy all of our services, requirement is to dockerize GeoServer for ElasticSearch and deploy to AWS</p>
+                    <h3>Dependency</h3>
+                    <ol>
+                      <li>GeoServer War file (http://sourceforge.net/projects/geoserver/files/GeoServer/2.13.2/geoserver-2.13.2-war.zip)</li>
+                      <li>Download ElasticGeo Jar from GitHub and Unzip it (https://github.com/ngageoint/elasticgeo/releases/download/2.13.2/elasticgeo-2.13.2.zip)</li>
+                      <li>Download other required jars or libraries</li>
+                      <li>Save all above files on specific folder</li>
+                      <li>Create Dockerfile on the same folder where you are saving geoserver war zip, elasticgeo jars and other related files</li>
+                    </ol>
+                    <p>The folder would like following</p>
+                    <img src="../../img/geoserverFolder.png" alt="GeoServer with ElasticGeo Folder Structure" style="width:700px;height:500px;">
+                    <p>Dockerfile:</p>
+                    <pre class="brush: cpp">
+                      # Geoserver 2.13.2 Dockerfile
+                      FROM tomcat:latest
+
+                      # This Dockerfile is maintained by shree665@gmail.com
+                      MAINTAINER shree665@gmail.com
+
+                      # Set Dockerfile environment variables
+                      ENV GEOSERVER_VERSION 2.13.2
+                      ENV GEOSERVER_TEMP_NAME geoserver.zip
+                      ENV ELASTICGEO_NAME elasticgeo-2.13.2.jar
+                      ENV GUAVA_NAME guava-17.0.jar
+                      ENV GENERIC_SLD generic.sld
+                      ENV GENERIC_XML generic.xml
+                      ENV GEOSERVER_XSTREAM_WHITELIST org.geoserver.**
+
+                      # Run install unzip from yum repository
+                      RUN apt-get -y update
+                      RUN apt-get -y install unzip
+
+
+                      # Download GeoServer Jars: GeoServer, ElasticGeo, and Guava
+                      COPY geoserver-2.13.2-war.zip $GEOSERVER_TEMP_NAME
+                      COPY elasticgeo-2.13.2.jar $ELASTICGEO_NAME
+                      COPY guava-17.0.jar $GUAVA_NAME
+                      COPY $GENERIC_XML  $GENERIC_XML
+                      COPY $GENERIC_SLD $GENERIC_SLD
+
+
+                      # Set up the webapps folder
+                      RUN unzip $GEOSERVER_TEMP_NAME -d $CATALINA_HOME/webapps \
+                          && ls -la $CATALINA_HOME \
+                          && mkdir $CATALINA_HOME/webapps/geoserver \
+                          && unzip $CATALINA_HOME/webapps/geoserver.war -d $CATALINA_HOME/webapps/geoserver \
+                          && rm  $CATALINA_HOME/webapps/*txt \
+                          && rm -rf $CATALINA_HOME/webapps/target
+
+                      # Cleanup and move files to correct dir
+                      RUN rm $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/guava*.jar \
+                      	&& rm $CATALINA_HOME/webapps/geoserver/data/styles/generic.xml \
+                          && mv $ELASTICGEO_NAME $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
+                          && mv $GUAVA_NAME $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
+                          && mv $GENERIC_XML $CATALINA_HOME/webapps/geoserver/data/styles/ \
+                          && mv $GENERIC_SLD $CATALINA_HOME/webapps/geoserver/data/styles/
+
+
+                      COPY USA_rds $CATALINA_HOME/
+
+                      # Replace web.xml to enable CORS
+                      RUN rm $CATALINA_HOME/conf/web.xml
+                      ADD web.xml $CATALINA_HOME/conf/
+
+
+                      RUN set -x; rm -rf $GEOSERVER_TEMP_NAME
+
+                      CMD ["catalina.sh", "run"]
+                    </pre>
+                  <p> We can also create docker image using S3 bucket as source for all of the requeired files. Dockerfile needs to change to download all
+                    the required jar from S3 bucket. Dockerfile will like follows to download required files from AWS S3</p>
+                    <pre class="brush: cpp">
+                      # Geoserver 2.13.2 Dockerfile
+                      FROM tomcat:latest
+
+                      # This Dockerfile is maintained by shree665@gmail.com
+                      MAINTAINER shree665@gmail.com
+
+                      #Argument from cmd
+                      ARG S3_BUCKET_URL
+
+                      # Set Dockerfile environment variables
+                      ENV GEOSERVER_VERSION 2.13.2
+                      ENV GEOSERVER_TEMP_NAME geoserver.zip
+                      ENV GEOTOOLS_TEMP_NAME geotools.zip
+                      ENV ELASTICGEO_NAME elasticgeo-2.13.2.jar
+                      ENV CONTROL_FLOW gs-control-flow-2.13.2.jar
+                      ENV GUAVA_NAME guava-17.0.jar
+                      ENV GENERIC_SLD generic.sld
+                      ENV GENERIC_XML generic.xml
+                      ENV S3_BUCKET_URL ${S3_BUCKET_URL}/geoserver
+                      ENV GEOSERVER_XSTREAM_WHITELIST com.bah.na.asc.**;org.geoserver.**
+
+                      # Update curl and bash
+                      RUN apk add --update curl bash && \
+                          rm -rf /var/cache/apk/*
+
+                      # Download GeoServer Jars: GeoServer, ElasticGeo, and Guava
+                      RUN set -x \
+                          && curl -fSLk $S3_BUCKET_URL/geoserver-2.13.2-war.zip -o $GEOSERVER_TEMP_NAME \
+                          && curl -fSLk $S3_BUCKET_URL/elasticgeo-2.13.2.jar -o $ELASTICGEO_NAME \
+                          && curl -fSLk $S3_BUCKET_URL/guava-17.0.jar -o $GUAVA_NAME \
+                          && curl -fSLk $S3_BUCKET_URL/gs-control-flow-2.13.2.jar -o $CONTROL_FLOW
+
+                      # Set up the webapps folder
+
+                      RUN unzip $GEOSERVER_TEMP_NAME -d $CATALINA_HOME/webapps \
+                          && ls -la $CATALINA_HOME \
+                          && mkdir $CATALINA_HOME/webapps/geoserver \
+                          && unzip $CATALINA_HOME/webapps/geoserver.war -d $CATALINA_HOME/webapps/geoserver \
+                          && rm  $CATALINA_HOME/webapps/*txt \
+                          && rm -rf $CATALINA_HOME/webapps/target
+
+
+                      # Copy in Generic Styling
+
+                      COPY $GENERIC_XML $GENERIC_XML
+                      COPY $GENERIC_SLD $GENERIC_SLD
+
+                      # Cleanup and move files to correct dir
+
+                      RUN rm $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/guava*.jar \
+                      	&& rm $CATALINA_HOME/webapps/geoserver/data/styles/generic.xml \
+                          && mv $ELASTICGEO_NAME $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
+                          && mv $GUAVA_NAME $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
+                          && mv $CONTROL_FLOW $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
+                          && mv $GENERIC_XML $CATALINA_HOME/webapps/geoserver/data/styles/ \
+                          && mv $GENERIC_SLD $CATALINA_HOME/webapps/geoserver/data/styles/
+
+                      # Replace web.xml for CORS
+                      RUN rm $CATALINA_HOME/conf/web.xml
+                      ADD web.xml $CATALINA_HOME/conf/
+
+                      RUN set -x; rm -rf $GEOSERVER_TEMP_NAME
+
+                      CMD ["catalina.sh", "run"]
+                    </pre>
+                  <hr>
+                  <h3>References</h3>
+                  <p class="copyright text-muted">Copyright of geoserver image is &copy; <a href="https://de.wikipedia.org/wiki/Datei:GeoServer_Logo.svg">wikipedia.org</a></p>
+                  <p>http://geoserver.org</p>
+                  <p>https://github.com/ngageoint/elasticgeo</p>
+                </div>
+                <hr>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div id="disqus_thread"></div>
+                  <script>
+
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  var disqus_config = function () {
+                  this.page.url = 'http://coffeetechgaff.com/2018/09/building-geoserver-docker-image-for-elasticsearch.html';
+                  this.page.identifier = '/2018/09/building-geoserver-docker-image-for-elasticsearch.html'; variable
+                  };
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://coffeetechgaff-com.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; coffeetechgaff.com 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../../js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="../../js/clean-blog.min.js"></script>
+
+    <!-- Discus comment count -->
+    <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
+</body>
+
+</html>
