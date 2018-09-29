@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js' type='text/javascript'></script>
+<script language='javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+  SyntaxHighlighter.all();
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coffeetechgaff.com">
+    <meta name="author" content="coffeetechgaff.com">
+
+    <title>coffeetechgaff - Blogs</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="../../index.html">coffeetechgaff.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../../about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="../../posts.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../../img/GeoServer.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Tricks to Increase GeoServer Performance</h1>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on October 01, 2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <h3>Purpose</h3>
+                  <p>200 users accessing same layer simultaneously without any issues. Each user is sending 39 getMap request with different bounding box. So, 7800 getMap requests to 4 GeoServers without any issues.</p>
+                  <h3>Background</h3>
+                    <p>GeoServer is an open source software server written in Java that allows users to share and edit geospatial data. Designed for interoperability, it publishes data from any major spatial data source using open standards. GeoServer is the reference implementation of the <a href="http://www.opengeospatial.org/" target=_blank> Open Geospatial Consortium</a> (OGC)
+                      <a href="http://www.opengeospatial.org/standards/wfs"> Web Feature Service</a> (WFS) and <a href="http://www.opengeospatial.org/standards/wcs" target=_blank> Web Coverage Service</a> (WCS) standards, as well as a high performance certified compliant <a href="http://www.opengeospatial.org/standards/wms" target=_blank> Web Map Service</a> (WMS). GeoServer forms a core component of the Geospatial Web.</p>
+                    <p><a href="https://github.com/ngageoint/elasticgeo"> ElasticGeo</a> is plugin for GeoServer that provides a GeoTools data store that allows geospatial features from an Elasticsearch index to be published via OGC services using GeoServer. Both <code>geo_point</code> and <code>geo_shape</code> type mappings are supported. OGC filters are converted to Elasticsearch queries and can be combined with native Elasticsearch queries in WMS and WFS requests.</p>
+                    <h3>Dependency</h3>
+                    <ol>
+                      <li>ElasticSearch 6.2</li>
+                      <li>ElasticGeo 2.12.2</li>
+                      <li>GeoServer 2.12.2</li>
+                      <li>gs-control-flow 2.12.2</li>
+                    </ol>
+                    <h3>GeoServer Configuration</h3>
+                    <ol>
+                      <li>GeoServer is running on Docker container</li>
+                      <li>Each container is running with 2CPU and 6GB of Ram</li>
+                      <li>Running 4 instances of GeoServer</li>
+                      <li>1000500 number of records on ElasticSearch index (with almost 120 attributes on each record)</li>
+                    </ol>
+                    <h3>Issues We Are Having</h3>
+                    <p>We are having <code>java.util.concurrent.TimeoutException</code> issue for most of the requests.
+                      Error is below. We were thinking that it is because <a href="https://www.elastic.co"><code>ElasticSearch</code></a> couldn't handle the number of requests because each RestClient's timeout is 500ms.
+                      We thought 500ms is too little if threads are waiting to execute. We played around with ElasticSearch configuration but did not work. We also find out that the Elasticsearch executes our GeoSpatial queries lightining fast.
+                      After banging our head around, we decided to take different route by limiting the requests to the GeoServer since each queries runs really fast in ElasticSearch.
+                      </p>
+                    <pre class="brush: cpp">
+                      29 Jun 16:29:33 ERROR [geoserver.ows] -
+                      org.geoserver.platform.ServiceException: Rendering process failed
+                      	at org.geoserver.wms.map.RenderedImageMapOutputFormat.produceMap(RenderedImageMapOutputFormat.java:609)
+                      	at org.geoserver.wms.map.RenderedImageMapOutputFormat.produceMap(RenderedImageMapOutputFormat.java:284)
+                      	at org.geoserver.wms.map.RenderedImageMapOutputFormat.produceMap(RenderedImageMapOutputFormat.java:141)
+                      	at org.geoserver.wms.GetMap.executeInternal(GetMap.java:653)
+                      	at org.geoserver.wms.GetMap.run(GetMap.java:285)
+                      	at org.geoserver.wms.GetMap.run(GetMap.java:131)
+                      	at org.geoserver.wms.DefaultWebMapService.getMap(DefaultWebMapService.java:320)
+                      	at sun.reflect.GeneratedMethodAccessor417.invoke(Unknown Source)
+                      	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                      	at java.lang.reflect.Method.invoke(Method.java:498)
+                      	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:333)
+                      	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+                      	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+                      	at org.geoserver.kml.WebMapServiceKmlInterceptor.invoke(WebMapServiceKmlInterceptor.java:34)
+                      	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+                      	at org.geoserver.gwc.wms.CacheSeedingWebMapService.invoke(CacheSeedingWebMapService.java:62)
+                      	at org.geoserver.gwc.wms.CacheSeedingWebMapService.invoke(CacheSeedingWebMapService.java:36)
+                      	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+                      	at org.geoserver.gwc.wms.CachingWebMapService.invoke(CachingWebMapService.java:80)
+                      	at org.geoserver.gwc.wms.CachingWebMapService.invoke(CachingWebMapService.java:55)
+                      	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+                      	at org.geoserver.ows.util.RequestObjectLogger.invoke(RequestObjectLogger.java:55)
+                      	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+                      	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:213)
+                      	at com.sun.proxy.$Proxy89.getMap(Unknown Source)
+                      	at sun.reflect.GeneratedMethodAccessor347.invoke(Unknown Source)
+                      	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                      	at java.lang.reflect.Method.invoke(Method.java:498)
+                      	at org.geoserver.ows.Dispatcher.execute(Dispatcher.java:857)
+                      	at org.geoserver.ows.Dispatcher.handleRequestInternal(Dispatcher.java:268)
+                      	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:174)
+                      	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:50)
+                      	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+                      	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+                      	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+                      	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+                      	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+                      	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+                      	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:441)
+                      	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:169)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.ThreadLocalsCleanupFilter.doFilter(ThreadLocalsCleanupFilter.java:28)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.SpringDelegatingFilter$Chain.doFilter(SpringDelegatingFilter.java:75)
+                      	at org.geoserver.wms.animate.AnimatorFilter.doFilter(AnimatorFilter.java:71)
+                      	at org.geoserver.filters.SpringDelegatingFilter$Chain.doFilter(SpringDelegatingFilter.java:71)
+                      	at org.geoserver.filters.SpringDelegatingFilter.doFilter(SpringDelegatingFilter.java:46)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.platform.AdvancedDispatchFilter.doFilter(AdvancedDispatchFilter.java:50)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:316)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:69)
+                      	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+                      	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:73)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:92)
+                      	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:69)
+                      	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:114)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:73)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:92)
+                      	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:69)
+                      	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:158)
+                      	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:73)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:92)
+                      	at org.geoserver.security.filter.GeoServerBasicAuthenticationFilter.doFilter(GeoServerBasicAuthenticationFilter.java:84)
+                      	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+                      	at org.geoserver.security.filter.GeoServerPreAuthenticationFilter.doFilter(GeoServerPreAuthenticationFilter.java:75)
+                      	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:69)
+                      	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:91)
+                      	at org.geoserver.security.filter.GeoServerSecurityContextPersistenceFilter$1.doFilter(GeoServerSecurityContextPersistenceFilter.java:53)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter$NestedFilterChain.doFilter(GeoServerCompositeFilter.java:73)
+                      	at org.geoserver.security.filter.GeoServerCompositeFilter.doFilter(GeoServerCompositeFilter.java:92)
+                      	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+                      	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:213)
+                      	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:176)
+                      	at org.geoserver.security.GeoServerSecurityFilterChainProxy.doFilter(GeoServerSecurityFilterChainProxy.java:152)
+                      	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:346)
+                      	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:262)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.LoggingFilter.doFilter(LoggingFilter.java:88)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.XFrameOptionsFilter.doFilter(XFrameOptionsFilter.java:89)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.GZIPFilter.doFilter(GZIPFilter.java:42)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.SessionDebugFilter.doFilter(SessionDebugFilter.java:48)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.geoserver.filters.FlushSafeFilter.doFilter(FlushSafeFilter.java:44)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+                      	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+                      	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+                      	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+                      	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+                      	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+                      	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+                      	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+                      	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+                      	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:650)
+                      	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+                      	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+                      	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+                      	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+                      	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+                      	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+                      	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+                      	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                      	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                      	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+                      	at java.lang.Thread.run(Thread.java:748)
+                      Caused by: java.lang.RuntimeException: java.io.IOException: Error executing query search
+                      	at org.geotools.data.store.ContentFeatureCollection.features(ContentFeatureCollection.java:176)
+                      	at org.geoserver.feature.RetypingFeatureCollection.features(RetypingFeatureCollection.java:54)
+                      	at org.geoserver.feature.RetypingFeatureCollection.features(RetypingFeatureCollection.java:38)
+                      	at org.geotools.renderer.lite.StreamingRenderer.drawPlain(StreamingRenderer.java:2302)
+                      	at org.geotools.renderer.lite.StreamingRenderer.processStylers(StreamingRenderer.java:1937)
+                      	at org.geotools.renderer.lite.StreamingRenderer.paint(StreamingRenderer.java:835)
+                      	at org.geoserver.wms.map.RenderedImageMapOutputFormat.produceMap(RenderedImageMapOutputFormat.java:579)
+                      	... 129 more
+                      Caused by: java.io.IOException: Error executing query search
+                      	at mil.nga.giat.data.elasticsearch.ElasticFeatureSource.getReaderInternal(ElasticFeatureSource.java:132)
+                      	at org.geotools.data.store.ContentFeatureSource.getReader(ContentFeatureSource.java:647)
+                      	at org.geotools.data.store.ContentFeatureCollection.features(ContentFeatureCollection.java:173)
+                      	... 135 more
+                      Caused by: java.lang.RuntimeException: error while performing request
+                      	at org.elasticsearch.client.RestClient$SyncResponseListener.get(RestClient.java:684)
+                      	at org.elasticsearch.client.RestClient.performRequest(RestClient.java:222)
+                      	at org.elasticsearch.client.RestClient.performRequest(RestClient.java:194)
+                      	at mil.nga.giat.data.elasticsearch.RestElasticClient.performRequest(RestElasticClient.java:191)
+                      	at mil.nga.giat.data.elasticsearch.RestElasticClient.search(RestElasticClient.java:185)
+                      	at mil.nga.giat.data.elasticsearch.ElasticFeatureSource.getReaderInternal(ElasticFeatureSource.java:118)
+                      	... 137 more
+                      Caused by: java.util.concurrent.TimeoutException
+                      	at org.apache.http.nio.pool.AbstractNIOConnPool.processPendingRequest(AbstractNIOConnPool.java:364)
+                      	at org.apache.http.nio.pool.AbstractNIOConnPool.processNextPendingRequest(AbstractNIOConnPool.java:344)
+                      	at org.apache.http.nio.pool.AbstractNIOConnPool.release(AbstractNIOConnPool.java:318)
+                      	at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.releaseConnection(PoolingNHttpClientConnectionManager.java:303)
+                      	at org.apache.http.impl.nio.client.AbstractClientExchangeHandler.releaseConnection(AbstractClientExchangeHandler.java:239)
+                      	at org.apache.http.impl.nio.client.MainClientExec.responseCompleted(MainClientExec.java:387)
+                      	at org.apache.http.impl.nio.client.DefaultClientExchangeHandlerImpl.responseCompleted(DefaultClientExchangeHandlerImpl.java:168)
+                      	at org.apache.http.nio.protocol.HttpAsyncRequestExecutor.processResponse(HttpAsyncRequestExecutor.java:436)
+                      	at org.apache.http.nio.protocol.HttpAsyncRequestExecutor.inputReady(HttpAsyncRequestExecutor.java:326)
+                      	at org.apache.http.impl.nio.DefaultNHttpClientConnection.consumeInput(DefaultNHttpClientConnection.java:265)
+                      	at org.apache.http.impl.nio.client.InternalIODispatch.onInputReady(InternalIODispatch.java:81)
+                      	at org.apache.http.impl.nio.client.InternalIODispatch.onInputReady(InternalIODispatch.java:39)
+                      	at org.apache.http.impl.nio.reactor.AbstractIODispatch.inputReady(AbstractIODispatch.java:114)
+                      	at org.apache.http.impl.nio.reactor.BaseIOReactor.readable(BaseIOReactor.java:162)
+                      	at org.apache.http.impl.nio.reactor.AbstractIOReactor.processEvent(AbstractIOReactor.java:337)
+                      	at org.apache.http.impl.nio.reactor.AbstractIOReactor.processEvents(AbstractIOReactor.java:315)
+                      	at org.apache.http.impl.nio.reactor.AbstractIOReactor.execute(AbstractIOReactor.java:276)
+                      	at org.apache.http.impl.nio.reactor.BaseIOReactor.execute(BaseIOReactor.java:104)
+                      	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor$Worker.run(AbstractMultiworkerIOReactor.java:588)
+                      	... 1 more
+                    </pre>
+                  <hr>
+                  <h3>Steps We Took To Resolve The Issue</h3>
+                  <ol>
+                    <li>We updated <code>server.xml</code> of tomcat to allow only 20 threads. We reduce the max threads in tomcat connector to 20.</li>
+                    <li>We added <code>gs-control-flow 2.12.2 jar (extension)</code> to GeoServer to control the number of requests being process on GeoServer.</li>
+                    <li>We added <code>controlflow.properties</code> file to /data directory of GeoServer so that control flow can be controlled. We can control bunch of stuffs from property file which as follows.</li>
+                    <pre class="brush: cpp">
+                      #request time out for a request using control flow
+                      # timeout=60
+                      # don't allow the execution of more than 18 requests total in parallel
+                      ows.global=16
+                      # don't allow more than 8 GetMap requests in parallel
+                      ows.wms.getmap=8
+                      # don't allow more than 8 WFS GetFeature requests with Excel output format
+                      ows.wfs.getfeature=8
+                      # don't allow the execution of more than 16 tile requests in parallel
+                      # (assuming a server with 4 cores, GWC empirical tests show that throughput
+                      # peaks up at 4 x number of cores. Adjust as appropriate to your system)
+                      #ows.gwc=16
+                    </pre>
+                    The control flow module, as its name clearly explains, controls the flow of request to GeoServer.
+                    That is, every request coming to GeoServer is filtered by the module and then submitted, queued, or rejected.
+                    A common use of this extension is to limit the concurrent request from the same user or a service to avoid an overwhelming amount of load that can block your GeoServer.</li>
+                    <li>We re-ran the test again with these changes, All 7800 requests of 200 users ran successfully in about ~600 seconds. This is our desirable outcome.
+                    This runs even faster if we use <a href="http://geowebcache.org">GeoWebCache</a></li>
+                  </ol>
+                  <h3>Final Implementation</h3>
+                  <p>As we test more, following changes are the final as of right now. Following configuration might change as we test more</p>
+                  <ol>
+                    <li>The max threads in tomcat connector to 100</li>
+                    <li>4CPU and 6GB RAM for each instance of GeoServer</li>
+                    <li>controlflow.properties file as follows
+                      <pre class="brush: cpp">
+                        #request time out for a request using control flow
+                        timeout=60
+                        # don't allow the execution of more than 18 requests total in parallel
+                        ows.global=20
+                        # don't allow more than 10 GetMap requests in parallel
+                        ows.wms.getmap=10
+                        # don't allow more than 10 WFS GetFeature requests with Excel output format
+                        ows.wfs.getfeature=10
+                        # don't allow the execution of more than 16 tile requests in parallel
+                        # (assuming a server with 4 cores, GWC empirical tests show that throughput
+                        # peaks up at 4 x number of cores. Adjust as appropriate to your system)
+                        #ows.gwc=16
+                      </pre>
+                    </li>
+                  </ol>
+                  <h3>Other Possible Considerations for Performance</h3>
+                  <ol>
+                    <li>Adding <code>JAVAOPTS -Xms</code> rather than <code>-Xmx</code> so that JAVA doesn't have to allow memory under load situations</li>
+                    <li>For Controlling/limiting CPU in java 8, <code>-XX:ParallelGCThreads=N, -XXCICompilerCount=N</code>. N is number of threads we want to run. It depends on the number of cores. N should match the number of cores</li>
+                    <li>Using <code>--XX:+UserParallelOldGC</code> and <code>-XX:+UseParallelGc</code>. Only if we have more than 2 CPUs per GeoServer (recommendation to use 4 CPUs)</li>
+                    <li>Using <code>--XX:NewRatio=2</code></li>
+                    <li>Tuning <code>Native JAI</code> by using Native PNG Acceleration. We need to configure only to use 2x the number of cores for tile threads.</li>
+                  </ol>
+                  <h3>Conclusion</h3>
+                  <p>Updating <code>server.xml</code> and adding <code>controlflow.properties</code> file did the trick to solve the problem of timeout. It wasn't issue with ElasticSearch all along.
+                    It is GeoServer handling the resources. Only 20 threads running at a time. Which means only 20 total requests are being processed at any give time. This prevents throttling GeoServer and ElasticSearch.</p>
+                  <h3>References</h3>
+                  <p class="copyright text-muted">Copyright of geoserver image is &copy; <a href="https://de.wikipedia.org/wiki/Datei:GeoServer_Logo.svg">wikipedia.org</a></p>
+                  <p>http://geoserver.org</p>
+                  <p>https://github.com/ngageoint/elasticgeo</p>
+                  <p>https://docs.docker.com/engine/reference/commandline/build/</p>
+                </div>
+                <hr>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div id="disqus_thread"></div>
+                  <script>
+
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  var disqus_config = function () {
+                  this.page.url = 'http://coffeetechgaff.com/2018/09/building-geoserver-docker-image-for-elasticsearch.html';
+                  this.page.identifier = '/2018/09/building-geoserver-docker-image-for-elasticsearch.html'; variable
+                  };
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://coffeetechgaff-com.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; coffeetechgaff.com 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../../js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="../../js/clean-blog.min.js"></script>
+
+    <!-- Discus comment count -->
+    <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
+</body>
+
+</html>

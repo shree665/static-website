@@ -92,7 +92,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1>Building GeoServer Docker Image For ElasticSearch</h1>
-                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on August 11, 2018</span>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on September 27, 2018</span>
                     </div>
                 </div>
             </div>
@@ -104,23 +104,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <h3>Purpose</h3>
+                  <p>Since, we are using docker architecture to build and deploy all of our services, requirement is to dockerize GeoServer for ElasticSearch and deploy to AWS</p>
                   <h3>Background</h3>
                     <p>GeoServer is an open source software server written in Java that allows users to share and edit geospatial data. Designed for interoperability, it publishes data from any major spatial data source using open standards. GeoServer is the reference implementation of the <a href="http://www.opengeospatial.org/" target=_blank> Open Geospatial Consortium</a> (OGC)
                       <a href="http://www.opengeospatial.org/standards/wfs"> Web Feature Service</a> (WFS) and <a href="http://www.opengeospatial.org/standards/wcs" target=_blank> Web Coverage Service</a> (WCS) standards, as well as a high performance certified compliant <a href="http://www.opengeospatial.org/standards/wms" target=_blank> Web Map Service</a> (WMS). GeoServer forms a core component of the Geospatial Web.</p>
                     <p><a href="https://github.com/ngageoint/elasticgeo"> ElasticGeo</a> is plugin for GeoServer that provides a GeoTools data store that allows geospatial features from an Elasticsearch index to be published via OGC services using GeoServer. Both <code>geo_point</code> and <code>geo_shape</code> type mappings are supported. OGC filters are converted to Elasticsearch queries and can be combined with native Elasticsearch queries in WMS and WFS requests.</p>
-                    <h3>Purpose</h3>
-                    <p>Since, we are using docker architecture to build and deploy all of our services, requirement is to dockerize GeoServer for ElasticSearch and deploy to AWS</p>
                     <h3>Dependency</h3>
+                    <ol>
+                      <li>Geoserver war file</li>
+                      <li>ElasticGeo jar file</li>
+                      <li>Guava jar file</li>
+                      <li>Generic.sld file</li>
+                    </ol>
+                    <p>Above dependencies can be dowloaded from following locations</p>
                     <ol>
                       <li>GeoServer War file (http://sourceforge.net/projects/geoserver/files/GeoServer/2.13.2/geoserver-2.13.2-war.zip)</li>
                       <li>Download ElasticGeo Jar from GitHub and Unzip it (https://github.com/ngageoint/elasticgeo/releases/download/2.13.2/elasticgeo-2.13.2.zip)</li>
-                      <li>Download other required jars or libraries</li>
+                      <li>Guave-17.0 Jar File (https://mvnrepository.com/artifact/com.google.guava/guava/17.0/)</li>
                       <li>Save all above files on specific folder</li>
                       <li>Create Dockerfile on the same folder where you are saving geoserver war zip, elasticgeo jars and other related files</li>
                     </ol>
                     <p>The folder would like following</p>
                     <img src="../../img/geoserverFolder.png" alt="GeoServer with ElasticGeo Folder Structure" style="width:700px;height:500px;">
-                    <p>Dockerfile:</p>
+                    <p>Dockerfile would look like following. We should name it as <code>Dockerfile</code>:</p>
+                    <p>Couple of things to point out here. We need guava version 17 because of ElasticGeo uses the version 17. On the other hand, We also need generic.sld because geoserver uses generic.sld as default
+                      for styling if we don't define any style while creating a layer. When we create a layer, if we don't know the geometry type of <code>geo_shape</code> data type, geoserver will assign generic style.
+                      We might run into issue down the road of developement Since generic.sld is empty, Once we define the</p>
                     <pre class="brush: cpp">
                       # Geoserver 2.13.2 Dockerfile
                       FROM tomcat:latest
@@ -165,9 +175,6 @@
                           && mv $GUAVA_NAME $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
                           && mv $GENERIC_XML $CATALINA_HOME/webapps/geoserver/data/styles/ \
                           && mv $GENERIC_SLD $CATALINA_HOME/webapps/geoserver/data/styles/
-
-
-                      COPY USA_rds $CATALINA_HOME/
 
                       # Replace web.xml to enable CORS
                       RUN rm $CATALINA_HOME/conf/web.xml
@@ -214,7 +221,6 @@
                           && curl -fSLk $S3_BUCKET_URL/gs-control-flow-2.13.2.jar -o $CONTROL_FLOW
 
                       # Set up the webapps folder
-
                       RUN unzip $GEOSERVER_TEMP_NAME -d $CATALINA_HOME/webapps \
                           && ls -la $CATALINA_HOME \
                           && mkdir $CATALINA_HOME/webapps/geoserver \
@@ -222,14 +228,11 @@
                           && rm  $CATALINA_HOME/webapps/*txt \
                           && rm -rf $CATALINA_HOME/webapps/target
 
-
                       # Copy in Generic Styling
-
                       COPY $GENERIC_XML $GENERIC_XML
                       COPY $GENERIC_SLD $GENERIC_SLD
 
                       # Cleanup and move files to correct dir
-
                       RUN rm $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/guava*.jar \
                       	&& rm $CATALINA_HOME/webapps/geoserver/data/styles/generic.xml \
                           && mv $ELASTICGEO_NAME $CATALINA_HOME/webapps/geoserver/WEB-INF/lib/ \
@@ -247,10 +250,15 @@
                       CMD ["catalina.sh", "run"]
                     </pre>
                   <hr>
+                  <h3>Build</h3>
+                  <p>We can run <code>docker build -t geoserver:2.13.2 .</code> command to build the geoserver image from the folder directory.
+                    We should see <code>Successfully built 7eeafe217b67 Successfully tagged geoserver:2.13.2</code> mesage at the end of the build log in our console.
+                    The same image is also located in dockerhub <a href="https://hub.docker.com/r/shree665/geoserver/">here</a></p>
                   <h3>References</h3>
                   <p class="copyright text-muted">Copyright of geoserver image is &copy; <a href="https://de.wikipedia.org/wiki/Datei:GeoServer_Logo.svg">wikipedia.org</a></p>
                   <p>http://geoserver.org</p>
                   <p>https://github.com/ngageoint/elasticgeo</p>
+                  <p>https://docs.docker.com/engine/reference/commandline/build/</p>
                 </div>
                 <hr>
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
