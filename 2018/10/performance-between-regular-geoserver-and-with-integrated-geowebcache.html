@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js' type='text/javascript'></script>
+<script language='javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+  SyntaxHighlighter.all();
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="coffeetechgaff.com">
+    <meta name="author" content="coffeetechgaff.com">
+
+    <title>coffeetechgaff - Blogs</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../../css/clean-blog.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="../../index.html">coffeetechgaff.com</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../../about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="../../posts.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="../../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../../img/GeoServer.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Performance between Regular GeoServer and With Integrated GeoWebCache</h1>
+                        <span class="meta">Posted by <a href="../../about.html">coffeetechgaff</a> on October 13, 2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>GeoWebCache is used to cache map tiles coming from a variety of sources such as OGC Web Map Service (WMS) i.e. GeoServer in this case. It implements various service interfaces (such as WMS-C, WMTS, TMS, Google Maps KML,
+                    Virtual Earth) in order to accelerate and optimize map image delivery. GeoServer comes with GeoWebCache which is called integrated GeoWebCache. However, we need to turn on the layer to use integrated GeoWebCache.</p>
+                    <h3>Purpose</h3>
+                    <p>To increase the performance of serving layers to the user using GeoServer.</p>
+                    <h3>Dependency</h3>
+                    <ol>
+                      <li>ElasticSearch latest</li>
+                      <li>ElasticGeo 2.13.2</li>
+                      <li>GeoServer 2.13.2</li>
+                    </ol>
+                    </br>
+                    <h3>Performance Calculation Using LeafLet</h3>
+                    <p>We need to do following. The angular script can be run through <a href="https://zeppelin.apache.org/"> Zeppelin</a> or using html page.
+                    It's upto you. However, I tested using Zeppelin</p>
+                    <ol>
+                      <li>Create a layer in GeoServer using <a href="geoserver-with-elasticsearch-and-leaflet.html" style="color: #cc0000"> this</a> article.
+                      Datasource must have lots of data to see the performance. At least 1 million records.</li>
+                      <li>Enable the <i>direct integration with GeoServer WMS</i> check box from caching
+                        <img src="../../img/2018/10/caching_defaults.png" alt="caching defaults">
+                      </li>
+                      <li>Add following angular script to Zeppelin or in your html to see a layer in your leaflet map without using GeoWebCache
+                        <pre class="brush: cpp">
+                          %angular
+                          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+                          <div id="map" style="height: 500px; width: 100%"> </div>
+                          <script type="text/javascript">
+                          function initMap() {
+                            var map = new L.Map('map', {
+                              crs: L.CRS.EPSG3857,
+                              continuousWorld: true,
+                              layers: [
+                                  new L.TileLayer(
+                                      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                      {
+                                          attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                                      }
+                                  )
+                              ]
+                          });
+
+                          map.setView([0.0, 0.0], 2);
+
+                             var nexrad = L.tileLayer.wms("http://localhost:8080/geoserver/elasticsearch/wms?", {
+                               layers: 'elasticsearch:07177d4c-1227-4be4-aecc-56b600e3ed24',
+                               format: 'image/png',
+                               transparent: true,
+                               maxZoom: 18,
+                               minZoom: 2,
+                               continuousWorld: true,
+                               attribution: 'My GeoServer'
+                              }).addTo(map);
+                          }
+                          if (window.L) {
+                              initMap();
+                          } else {
+                              console.log('Loading Leaflet library');
+                              var sc = document.createElement('script');
+                              sc.type = 'text/javascript';
+                              sc.src = 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js';
+                              sc.onload = initMap;
+                              sc.onerror = function(err) { alert(err); }
+                              document.getElementsByTagName('head')[0].appendChild(sc);
+                          }
+                          </script>
+                        </pre>
+                      </li>
+                      <li>Add following angular script to Zeppelin or in your html to see a layer in your leaflet map using GeoWebCache. Need to
+                        add <code>tiled=true</code> as a query parameter in the WMS requests. You can see the different in load time of the data on the map.
+                        <pre class="brush: cpp">
+                          %angular
+                          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+                          <div id="map" style="height: 500px; width: 100%"> </div>
+                          <script type="text/javascript">
+                          function initMap() {
+                            var map = new L.Map('map', {
+                              crs: L.CRS.EPSG3857,
+                              continuousWorld: true,
+                              layers: [
+                                  new L.TileLayer(
+                                      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                      {
+                                          attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                                      }
+                                  )
+                              ]
+                          });
+
+                          map.setView([0.0, 0.0], 2);
+
+                             var nexrad = L.tileLayer.wms("http://localhost:8080/geoserver/elasticsearch/wms?tiled=true&", {
+                               layers: 'elasticsearch:07177d4c-1227-4be4-aecc-56b600e3ed24',
+                               format: 'image/png',
+                               transparent: true,
+                               maxZoom: 18,
+                               minZoom: 2,
+                               continuousWorld: true,
+                               attribution: 'My GeoServer'
+                              }).addTo(map);
+                          }
+                          if (window.L) {
+                              initMap();
+                          } else {
+                              console.log('Loading Leaflet library');
+                              var sc = document.createElement('script');
+                              sc.type = 'text/javascript';
+                              sc.src = 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js';
+                              sc.onload = initMap;
+                              sc.onerror = function(err) { alert(err); }
+                              document.getElementsByTagName('head')[0].appendChild(sc);
+                          }
+                          </script>
+                        </pre>
+                      </li
+                  </ol>
+                </ol>
+                <br>
+                <h3>Performance Calculation Using Python Script</h3>
+                <p>Let's run the following pythong script to see the number</p>
+                        <pre class="brush: python">
+                          %python
+
+                          import requests
+                          import time
+                          import grequests
+                          from urllib.request import urlopen
+
+                          url = "http://localhost:8080/geoserver/elasticsearch/wms"
+
+                          layer = "elasticsearch:07177d4c-1227-4be4-aecc-56b600e3ed24"
+
+                          bbox = [
+                          "-2504688.5428486555,2504688.5428486546,0,5009377.085697309",
+                          "0,2504688.5428486546,2504688.5428486555,5009377.085697309",
+                          "-2504688.5428486555,5009377.085697309,0,7514065.628545966",
+                          "0,5009377.085697309,2504688.5428486555,7514065.628545966",
+                          "-2504688.5428486555,-7.081154551613622,0,2504688.5428486546",
+                          "0,-7.081154551613622,2504688.5428486555,2504688.5428486546",
+                          "-5009377.085697311,2504688.5428486546,-2504688.5428486555,5009377.085697309",
+                          "2504688.5428486555,2504688.5428486546,5009377.085697311,5009377.085697309",
+                          "-5009377.085697311,5009377.085697309,-2504688.5428486555,7514065.628545966",
+                          "2504688.5428486555,5009377.085697309,5009377.085697311,7514065.628545966",
+                          "-5009377.085697311,-7.081154551613622,-2504688.5428486555,2504688.5428486546",
+                          "2504688.5428486555,-7.081154551613622,5009377.085697311,2504688.5428486546",
+                          "-2504688.5428486555,7514065.628545966,0,10018754.171394618",
+                          "0,7514065.628545966,2504688.5428486555,10018754.171394618",
+                          "-2504688.5428486555,-2504688.542848655,0,-7.081154551613622",
+                          "0,-2504688.542848655,2504688.5428486555,-7.081154551613622",
+                          "-5009377.085697311,7514065.628545966,-2504688.5428486555,10018754.171394618",
+                          "-7514065.628545966,2504688.5428486546,-5009377.085697311,5009377.085697309",
+                          "5009377.085697311,2504688.5428486546,7514065.628545966,5009377.085697309",
+                          "-5009377.085697311,-2504688.542848655,-2504688.5428486555,-7.081154551613622",
+                          "2504688.5428486555,-2504688.542848655,5009377.085697311,-7.081154551613622",
+                          "-7514065.628545966,5009377.085697309,-5009377.085697311,7514065.628545966",
+                          "5009377.085697311,5009377.085697309,7514065.628545966,7514065.628545966",
+                          "-7514065.628545966,-7.081154551613622,-5009377.085697311,2504688.5428486546",
+                          "5009377.085697311,-7.081154551613622,7514065.628545966,2504688.5428486546",
+                          "-7514065.628545966,7514065.628545966,-5009377.085697311,10018754.171394618",
+                          "5009377.085697311,7514065.628545966,7514065.628545966,10018754.171394618",
+                          "-7514065.628545966,-2504688.542848655,-5009377.085697311,-7.081154551613622",
+                          "5009377.085697311,-2504688.542848655,7514065.628545966,-7.081154551613622",
+                          "-10018754.171394622,2504688.5428486546,-7514065.628545966,5009377.085697309",
+                          "7514065.628545966,2504688.5428486546,10018754.171394622,5009377.085697309",
+                          "-10018754.171394622,5009377.085697309,-7514065.628545966,7514065.628545966",
+                          "7514065.628545966,5009377.085697309,10018754.171394622,7514065.628545966",
+                          "-10018754.171394622,-7.081154551613622,-7514065.628545966,2504688.5428486546",
+                          "7514065.628545966,-7.081154551613622,10018754.171394622,2504688.5428486546",
+                          "-10018754.171394622,7514065.628545966,-7514065.628545966,10018754.171394618",
+                          "7514065.628545966,7514065.628545966,10018754.171394622,10018754.171394618",
+                          "-10018754.171394622,-2504688.542848655,-7514065.628545966,-7.081154551613622",
+                          "7514065.628545966,-2504688.542848655,10018754.171394622,-7.081154551613622"
+                          ]
+
+                          number_users=10
+                          headers = {
+                              'name':'test'
+                              }
+                          wholeStart = time.time()
+                          queryParams = []
+                          goodCalls = 0
+                          badCalls = 0
+                          for i in range(number_users):
+                              start = time.time()
+                              for box in bbox:
+                                  querystring = {"LAYERS":layer,"FORMAT":"image/png","REQUEST":"GetMap","STYLES":"","SRS":"EPSG:3857","BBOX":box,"WIDTH":"256","HEIGHT":"256", "TRANSPARENT":"true"}
+                                  queryParams.append(querystring)
+                                  r = requests.request("GET", url, headers=headers, params=querystring)
+                                  #print(r.url)
+                                  #print(r)
+                                  info = r.headers['Content-Type']
+                                  if info=='image/png':
+                                      goodCalls += 1
+                                  else:
+                                      badCalls += 1
+                              query_time = time.time() - start
+                              print('Query time for user ' + str(i) + ' is {}'.format(query_time))
+                          #rs = (grequests.get(url, headers=headers,  params=p) for p in queryParams)
+                          #print(grequests.map(rs))
+                          wholeQueryTime = time.time() - wholeStart
+                          print('Query time for total users ' + str(number_users) + ' with request total ' + str(len(queryParams)) + ' is {}'.format(wholeQueryTime))
+                          print('Total good calls ' + str(goodCalls) + ' with total bad calls ' + str(badCalls))
+                        </pre>
+                        <p>The Runtime without using GeoWebCache is as follows</p>
+                        <pre class="brush: cpp">
+                          Query time for user 0 is 21.038068056106567
+                          Query time for user 1 is 19.959446907043457
+                          Query time for user 2 is 19.74454951286316
+                          Query time for user 3 is 19.76458168029785
+                          Query time for user 4 is 20.557850122451782
+                          Query time for user 5 is 21.417890310287476
+                          Query time for user 6 is 20.058231353759766
+                          Query time for user 7 is 19.57079005241394
+                          Query time for user 8 is 19.79716420173645
+                          Query time for user 9 is 19.767117023468018
+                          Query time for total users 10 with request total 390 is 201.68155598640442
+                          Total good calls 390 with total bad calls 0
+                        </pre>
+                        <p>The Runtime with using GeoWebCache is as follows</p>
+                        <pre class="brush: cpp">
+                          Change the url to
+                          url = "http://localhost:8080/geoserver/elasticsearch/wms?tiled=true&"
+
+                          Query time for user 0 is 0.638730525970459
+                          Query time for user 1 is 0.5899291038513184
+                          Query time for user 2 is 0.5873465538024902
+                          Query time for user 3 is 0.8277342319488525
+                          Query time for user 4 is 0.6482501029968262
+                          Query time for user 5 is 0.6671054363250732
+                          Query time for user 6 is 0.6258928775787354
+                          Query time for user 7 is 0.6370384693145752
+                          Query time for user 8 is 0.5637142658233643
+                          Query time for user 9 is 0.5665357112884521
+                          Query time for total users 10 with request total 390 is 6.361682415008545
+                          Total good calls 390 with total bad calls 0
+                        </pre>
+                    <h3>Conclusion</h3>
+                    <p>GeoWebCache increases the performance of GeoServer substancially as you can see above. This will be very useful if multiple users
+                    try to access same layer. We just need to remember turn on the integrated GeoWebCache option while creating a layer.</p>
+                    <hr>
+                    <h3>References</h3>
+                    <p class="copyright text-muted">Copyright of geoserver image is &copy; <a href="https://de.wikipedia.org/wiki/Datei:GeoServer_Logo.svg">wikipedia.org</a></p>
+                    <p>http://geoserver.org</p>
+                    <p>https://github.com/ngageoint/elasticgeo</p>
+                    <p>http://geowebcache.org/</p>
+                </div>
+                <hr>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div id="disqus_thread"></div>
+                  <script>
+
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  var disqus_config = function () {
+                  this.page.url = 'http://coffeetechgaff.com/2018/10/performance-between-regular-geoserver-and-with-integrated-geowebcache.html';
+                  this.page.identifier = '/2018/10/performance-between-regular-geoserver-and-with-integrated-geowebcache.html'; variable
+                  };
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://coffeetechgaff-com.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/shree665">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; coffeetechgaff.com <script>document.write(new Date().getFullYear())</script></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="../../js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="../../js/clean-blog.min.js"></script>
+
+    <!-- Discus comment count -->
+    <script id="dsq-count-scr" src="//coffeetechgaff-com.disqus.com/count.js" async></script>
+</body>
+
+</html>

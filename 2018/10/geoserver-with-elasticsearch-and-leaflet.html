@@ -119,7 +119,7 @@
                       <li>Build the geoserver docker Images using this <a href="../09/building-geoserver-docker-image-for-elasticsearch.html" style="color: #cc0000">article</a></li>
                       <li>Start the ElasticSearch
                         <pre class="brush: cpp">
-                          docker run --name elasticsearch-latest -p 9300:9300 -p 9200:9200 -t -d docker.elastic.co/elasticsearch/elasticsearch:6.1.2
+                          docker run --name elasticsearch-latest -p 9300:9300 -p 9200:9200 -t -d elasticsearch:6.1.2
                         </pre>
                       </li>
                       <li>Start GeoServers
@@ -158,8 +158,8 @@
                               <li>First get the CONTAINER ID for elasticsearch-latest by running <code>docker ps</code>. You will get following:
                                 <pre class="brush: cpp">
                                   CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-                                  210186e03ebf        geoserver:latest                                  "catalina.sh run"        2 weeks ago         Up 2 hours          0.0.0.0:8080->8080/tcp                           geoserver
-                                  39e03b4ed70f        docker.elastic.co/elasticsearch/elasticsearch:6.1.2   "/usr/local/bin/do..."   2 weeks ago         Up 2 hours          0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   elasticsearch-latest
+                                  210186e03ebf        geoserver:latest                                  catalina.sh run       2 weeks ago         Up 2 hours          0.0.0.0:8080->8080/tcp                           geoserver
+                                  39e03b4ed70f        docker.elastic.co/elasticsearch/elasticsearch:6.1.2   /usr/local/bin/do...   2 weeks ago         Up 2 hours          0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   elasticsearch-latest
                                 </pre>
                               </li>
                               <li>Second inspect the container using <code>docker inspect 39e03b4ed70f</code>. You will see following output and you need see IPAddress attribute for IP address
